@@ -1,0 +1,38 @@
+<div class="flex flex-col p-6">
+    <h2 class="text-2xl font-bold mb-4">Equipment Management</h2>
+  
+    <div *ngIf="errorMessage" class="bg-red-500 text-white p-3 rounded mb-4">
+      {{ errorMessage }}
+    </div>
+  
+    <button (click)="openDialog()" class="bg-blue-500 text-white py-2 px-4 rounded mb-4">Add Equipment</button>
+  
+    <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+      <thead>
+        <tr>
+          <th class="p-2 border-b">ID</th>
+          <th class="p-2 border-b">Name</th>
+          <th class="p-2 border-b">Description</th>
+          <th class="p-2 border-b">Status</th>
+          <th class="p-2 border-b">Location</th>
+          <th class="p-2 border-b">Purchase Date</th>
+          <th class="p-2 border-b">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let equipment of equipments">
+          <td class="p-2 border-b">{{ equipment.id }}</td>
+          <td class="p-2 border-b">{{ equipment.name }}</td>
+          <td class="p-2 border-b">{{ equipment.description }}</td>
+          <td class="p-2 border-b">{{ equipment.status }}</td>
+          <td class="p-2 border-b">{{ equipment.location }}</td>
+          <td class="p-2 border-b">{{ equipment.purchaseDate | date }}</td>
+          <td class="p-2 border-b">
+            <button (click)="openDialog(equipment)" class="bg-yellow-500 text-white py-1 px-2 rounded">Edit</button>
+            <button (click)="deleteEquipment(equipment.id)" class="bg-red-500 text-white py-1 px-2 rounded">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

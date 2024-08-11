@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>{{ isEditing ? 'Edit Equipment' : 'Add Equipment' }}</h2>
+<mat-dialog-content>
+  <form (ngSubmit)="save()">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput [(ngModel)]="equipment.name" name="name" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <input matInput [(ngModel)]="equipment.description" name="description" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Status</mat-label>
+      <input matInput [(ngModel)]="equipment.status" name="status" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Location</mat-label>
+      <input matInput [(ngModel)]="equipment.location" name="location" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Purchase Date</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="equipment.purchaseDate" name="purchaseDate" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <div class="dialog-actions">
+      <button mat-button type="submit">{{ isEditing ? 'Update Equipment' : 'Add Equipment' }}</button>
+      <button mat-button (click)="close()">Cancel</button>
+    </div>
+  </form>
+</mat-dialog-content>
