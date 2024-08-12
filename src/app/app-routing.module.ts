@@ -18,13 +18,13 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'create-ticket', component: UserTicketComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'dashboard', component: DashboardComponent,  canActivate: [AuthGuard, AdminGuard] },
-
+  
   // Admin routes
-  { path: 'admin/equipment', component: EquipmentManagementComponent, canActivate: [AuthGuard] },
-  { path: 'admin/panne', component: PanneManagementComponent, canActivate: [AuthGuard] },
-  { path: 'admin/tickets', component: TicketManagementComponent, canActivate: [AuthGuard] },
-  { path: 'admin/users', component: UserManagementComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', component: DashboardComponent,  canActivate: [AuthGuard, AdminGuard] },
+  { path: 'admin/equipment', component: EquipmentManagementComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'admin/panne', component: PanneManagementComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'admin/tickets', component: TicketManagementComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'admin/users', component: UserManagementComponent, canActivate: [AuthGuard, AdminGuard] },
 
   // Redirect to login if the route is not found
   { path: '**', redirectTo: '/login' }

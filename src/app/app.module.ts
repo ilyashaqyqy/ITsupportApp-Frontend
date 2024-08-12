@@ -13,7 +13,7 @@ import { TicketsComponent } from './utilisateur/tickets/tickets.component';
 import { TicketAssignmentComponent } from './admin/ticket-assignment/ticket-assignment.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PanneManagementComponent } from './admin/panne-management/panne-management.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -63,7 +63,9 @@ import { MatSelectModule } from '@angular/material/select';
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+
+    ReactiveFormsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

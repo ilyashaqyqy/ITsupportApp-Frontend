@@ -21,15 +21,6 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/register`, request);
   }
 
-  // login(username: string, password: string): Observable<any> {
-  //   return this.http.post<{ token: string; userId: number }>(`${this.apiUrl}/authenticate`, { username, password }).pipe(
-  //     tap(response => {
-  //       this.saveToken(response.token);
-  //       this.userId = response.userId;
-  //       console.log('User ID:', this.userId);
-  //     })
-  //   );
-  // }
 
   login(username: string, password: string): Observable<any> {
     return this.http.post<{ token: string; userId: number }>(`${this.apiUrl}/authenticate`, { username, password }).pipe(
@@ -41,6 +32,7 @@ export class AuthService {
       })
     );
   }
+
   
 
 
