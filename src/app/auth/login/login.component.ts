@@ -33,7 +33,7 @@ export class LoginComponent {
           this.router.navigate(['/technician-dashboard']);
         } else {
           console.log('Navigating to home');
-          this.router.navigate(['/home']);
+          this.router.navigate(['/create-ticket']);
         }
       },
       (error: any) => {

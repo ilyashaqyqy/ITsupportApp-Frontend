@@ -10,6 +10,7 @@ import { TicketManagementComponent } from './admin/ticket-management/ticket-mana
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { AuthGuard } from './guards/auth.guard';
 import { UserTicketComponent } from './user/user-ticket/user-ticket.component';
+import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -17,7 +18,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'create-ticket', component: UserTicketComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', component: DashboardComponent,  canActivate: [AuthGuard, AdminGuard] },
 
   // Admin routes
   { path: 'admin/equipment', component: EquipmentManagementComponent, canActivate: [AuthGuard] },
