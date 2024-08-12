@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms'; 
-
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +21,7 @@ export class LoginComponent {
 
     const { username, password } = form.value;
     this.authService.login(username, password).subscribe(
-      (response: { token: any; }) => {
+      (response: { token: string; userId: number; }) => {
         this.authService.saveToken(response.token);
         const role = this.authService.getRole();
         console.log('Role after login:', role);
@@ -31,13 +30,13 @@ export class LoginComponent {
           this.router.navigate(['/dashboard']);
         } else if (role === 'ROLE_TECHNICIEN') {
           console.log('Navigating to technician dashboard');
-          this.router.navigate(['/technician-dashboard']); 
+          this.router.navigate(['/technician-dashboard']);
         } else {
           console.log('Navigating to home');
           this.router.navigate(['/home']);
         }
       },
-      ( error: any) => {
+      (error: any) => {
         console.error('Login failed', error);
         this.errorMessage = 'Login failed. Please check your username and password.';
       }

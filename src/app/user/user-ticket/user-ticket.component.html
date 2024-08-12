@@ -1,0 +1,28 @@
+<h2>Create Support Ticket</h2>
+
+<form (ngSubmit)="createTicket()">
+  <mat-form-field>
+    <mat-label>Select Equipment</mat-label>
+    <mat-select [(ngModel)]="ticket.equipmentId" name="equipmentId" required>
+      <mat-option *ngFor="let equipment of equipmentList" [value]="equipment.id">
+        {{ equipment.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Select Panne</mat-label>
+    <mat-select [(ngModel)]="ticket.panneId" name="panneId" required>
+<mat-option *ngFor="let panne of panneList" [value]="panne.id">
+  {{ panne.description }}
+</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <textarea matInput [(ngModel)]="ticket.description" name="description" required></textarea>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Submit Ticket</button>
+</form>

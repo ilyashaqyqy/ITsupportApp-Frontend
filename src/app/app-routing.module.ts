@@ -9,11 +9,13 @@ import { PanneManagementComponent } from './admin/panne-management/panne-managem
 import { TicketManagementComponent } from './admin/ticket-management/ticket-management.component';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { AuthGuard } from './guards/auth.guard';
+import { UserTicketComponent } from './user/user-ticket/user-ticket.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'create-ticket', component: UserTicketComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
 

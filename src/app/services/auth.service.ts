@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
-import  {jwtDecode } from 'jwt-decode';
+import { jwtDecode}  from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private apiUrl = 'http://localhost:8082/api/v1/auth';
+
   private userId: number | null = null;
   private username: string | null = null;
   private role: string[] | null = null;
@@ -17,26 +18,52 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) {}
 
   register(request: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/register`, request);
+    return this.http.post(`${this.apiUrl}/register`, request);
   }
 
+  // login(username: string, password: string): Observable<any> {
+  //   return this.http.post<{ token: string; userId: number }>(`${this.apiUrl}/authenticate`, { username, password }).pipe(
+  //     tap(response => {
+  //       this.saveToken(response.token);
+  //       this.userId = response.userId;
+  //       console.log('User ID:', this.userId);
+  //     })
+  //   );
+  // }
+
   login(username: string, password: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/authenticate`, { username, password }).pipe(
+    return this.http.post<{ token: string; userId: number }>(`${this.apiUrl}/authenticate`, { username, password }).pipe(
       tap(response => {
         this.saveToken(response.token);
-        // Extract user ID from token if available
-        this.userId = this.decodeToken(response.token).idUser || null;
+        this.userId = response.userId;
+        localStorage.setItem('userId', this.userId.toString());
+        console.log('User ID stored:', this.userId);
       })
     );
   }
+  
+
 
   saveToken(token: string): void {
     localStorage.setItem('authToken', token);
+    this.setUserDataFromToken(token);
+  }
+
+  // setUserDataFromToken(token: string): void {
+  //   const decodedToken: any = this.decodeToken(token);
+  //   this.username = decodedToken.sub;
+  //   this.role = decodedToken.roles;
+  //   this.userId = decodedToken.idUser || null;
+  // }
+
+  setUserDataFromToken(token: string): void {
     const decodedToken: any = this.decodeToken(token);
+    console.log('Decoded Token:', decodedToken);
     this.username = decodedToken.sub;
     this.role = decodedToken.roles;
-    this.userId = decodedToken.idUser || null; // Extract user ID if available
+    this.userId = decodedToken.idUser || null;
   }
+  
 
   getToken(): string | null {
     return localStorage.getItem('authToken');
@@ -87,4 +114,6 @@ export class AuthService {
   isLoggedIn(): boolean {
     return !!this.getToken();
   }
+
+  
 }

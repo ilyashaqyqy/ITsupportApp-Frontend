@@ -27,7 +27,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { PanneDialogComponent } from './panne-dialog/panne-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
-
+import { UserHomeComponent } from './user/user-home/user-home.component';
+import { UserTicketComponent } from './user/user-ticket/user-ticket.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { MatButtonModule } from '@angular/material/button';
     RegisterComponent,
     PanneManagementComponent,
     EquipmentDialogComponent,
-    PanneDialogComponent
+    PanneDialogComponent,
+    UserHomeComponent,
+    UserTicketComponent
    
   ],
   imports: [
@@ -58,7 +62,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSelectModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
