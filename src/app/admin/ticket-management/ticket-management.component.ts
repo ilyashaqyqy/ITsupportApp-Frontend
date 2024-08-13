@@ -14,6 +14,8 @@ export class TicketManagementComponent implements OnInit {
   technicians: Technicien[] = [];
   selectedTicketId: number | null = null;
   selectedTechnicienId: number | null = null;
+  showAllTickets: boolean = false;
+
 
   constructor(
     private ticketService: TicketService,
@@ -64,5 +66,9 @@ export class TicketManagementComponent implements OnInit {
       );
     }
   }
+
+
+
+
 
 }

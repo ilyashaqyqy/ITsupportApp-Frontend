@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 
+
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { EquipmentManagementComponent } from './admin/equipment-management/equipment-management.component';
 import { PanneManagementComponent } from './admin/panne-management/panne-management.component';
