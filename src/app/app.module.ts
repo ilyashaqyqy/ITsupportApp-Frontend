@@ -30,6 +30,7 @@ import { UserTicketComponent } from './user/user-ticket/user-ticket.component';
 import { MatSelectModule } from '@angular/material/select';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { TechnicainManagmentComponent } from './admin/technicain-managment/technicain-managment.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { FooterComponent } from './footer/footer.component';
     UserHomeComponent,
     UserTicketComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    TechnicainManagmentComponent
    
   ],
   imports: [

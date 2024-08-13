@@ -59,9 +59,16 @@
           <app-ticket-management></app-ticket-management>
         </div>
         
+        <div *ngIf="currentSection === 'technicain'">
+          <app-technicain-managment></app-technicain-managment>
+        </div>
+        
+        
         <div *ngIf="currentSection === 'users'">
           <app-user-management></app-user-management>
         </div>
+
+
       </div>
     </main>
   </div>

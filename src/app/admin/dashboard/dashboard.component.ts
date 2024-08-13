@@ -15,6 +15,7 @@ export class DashboardComponent {
     { section: 'equipment', label: 'Equipment', icon: 'fas fa-laptop' },
     { section: 'panne', label: 'Faults', icon: 'fas fa-exclamation-triangle' },
     { section: 'tickets', label: 'Tickets', icon: 'fas fa-ticket-alt' },
+    { section: 'technicain', label: 'Technicain', icon: 'fas fa-ticket-alt' },
     { section: 'users', label: 'Users', icon: 'fas fa-users' }
   ];
 
