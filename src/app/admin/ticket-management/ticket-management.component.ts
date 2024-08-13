@@ -29,6 +29,7 @@ export class TicketManagementComponent implements OnInit {
     this.ticketService.getTickets().subscribe(
       (data) => {
         this.tickets = data;
+  
       },
       (error) => {
         console.error('Error loading tickets', error);
@@ -36,6 +37,7 @@ export class TicketManagementComponent implements OnInit {
     );
   }
 
+  
   loadTechnicians(): void {
     this.technicienService. getTechniciens().subscribe(
       (data) => {
@@ -62,4 +64,5 @@ export class TicketManagementComponent implements OnInit {
       );
     }
   }
+
 }

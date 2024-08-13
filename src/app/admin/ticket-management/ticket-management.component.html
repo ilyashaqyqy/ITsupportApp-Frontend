@@ -1,4 +1,4 @@
-<div class="bg-white rounded-3xl shadow-xl p-8 mb-10 transform hover:scale-105 transition-transform duration-300">
+<div class="bg-white rounded-3xl shadow-xl p-8 mb-10">
     <h3 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 mb-6">Ticket Galaxy</h3>
     
     <div class="mb-6">
@@ -27,7 +27,7 @@
         <li *ngFor="let ticket of tickets" class="bg-gradient-to-r from-purple-100 to-pink-100 p-4 rounded-2xl shadow-md">
           <span class="font-bold text-purple-600">{{ ticket.description }}</span> 
           <span class="text-gray-600 ml-2">- Assigned to:</span> 
-          <span class="text-pink-600 font-bold">{{ ticket.technicienAssigne?.username || 'Awaiting Hero' }}</span>
+          <span class="text-pink-600 font-bold">{{ ticket.technicienAssigne?.username || 'Unassigned' }}</span>
         </li>
       </ul>
     </div>

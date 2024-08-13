@@ -8,8 +8,6 @@ import { EquipmentManagementComponent } from './admin/equipment-management/equip
 import { TicketManagementComponent } from './admin/ticket-management/ticket-management.component';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { HomeComponent } from './utilisateur/home/home.component';
-import { TicketsComponent } from './utilisateur/tickets/tickets.component';
 import { TicketAssignmentComponent } from './admin/ticket-assignment/ticket-assignment.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
@@ -30,6 +28,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { UserHomeComponent } from './user/user-home/user-home.component';
 import { UserTicketComponent } from './user/user-ticket/user-ticket.component';
 import { MatSelectModule } from '@angular/material/select';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -38,8 +38,6 @@ import { MatSelectModule } from '@angular/material/select';
     TicketManagementComponent,
     UserManagementComponent,
     DashboardComponent,
-    HomeComponent,
-    TicketsComponent,
     TicketAssignmentComponent,
     LoginComponent,
     RegisterComponent,
@@ -47,7 +45,9 @@ import { MatSelectModule } from '@angular/material/select';
     EquipmentDialogComponent,
     PanneDialogComponent,
     UserHomeComponent,
-    UserTicketComponent
+    UserTicketComponent,
+    NavbarComponent,
+    FooterComponent
    
   ],
   imports: [

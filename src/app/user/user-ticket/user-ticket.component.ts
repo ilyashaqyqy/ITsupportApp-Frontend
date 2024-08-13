@@ -5,6 +5,7 @@ import { PanneService } from '../../services/panne.service';
 import { AuthService } from '../../services/auth.service';
 import { Equipement } from 'src/app/models/equipement.model';
 import { Panne } from 'src/app/models/panne.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-ticket',
@@ -24,11 +25,13 @@ export class UserTicketComponent implements OnInit {
   equipmentList: Equipement[] = [];
   panneList: Panne[] = [];
 
+
   constructor(
     private ticketService: TicketService,
     private equipmentService: EquipmentService,
     private panneService: PanneService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -99,5 +102,9 @@ export class UserTicketComponent implements OnInit {
       console.error('Cannot create ticket: User ID is null');
     }
   }
-  
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
 }

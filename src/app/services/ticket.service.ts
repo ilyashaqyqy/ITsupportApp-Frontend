@@ -15,10 +15,13 @@ export class TicketService {
     return this.http.post<any>(this.apiUrl, ticket);
   }
 
-  assignTicket(ticketId: number, technicianId: number): Observable<void> {
-    return this.http.put<void>(`${this.apiUrl}/${ticketId}/assign/${technicianId}`, {});
-  }
+  // assignTicket(ticketId: number, technicianId: number): Observable<void> {
+  //   return this.http.put<void>(`${this.apiUrl}/${ticketId}/assign/${technicianId}`, {});
+  // }
 
+  assignTicket(ticketId: number, technicianId: number): Observable<TicketSupport> {
+    return this.http.put<TicketSupport>(`${this.apiUrl}/${ticketId}/assign/${technicianId}`, {});
+  }
   getTickets(): Observable<TicketSupport[]> {
     return this.http.get<TicketSupport[]>(this.apiUrl);
   }

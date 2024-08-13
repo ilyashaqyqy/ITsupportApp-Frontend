@@ -15,4 +15,8 @@ export class TechnicienService {
     return this.http.get<Technicien[]>(this.apiUrl);
   }
 
+  getTechnicien(id: number): Observable<Technicien> {
+    return this.http.get<Technicien>(`${this.apiUrl}/${id}`);
+  }
+
 }

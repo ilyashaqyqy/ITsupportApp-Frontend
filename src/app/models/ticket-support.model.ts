@@ -5,6 +5,7 @@ import { Technicien } from './technicien.model';
 import { TicketStatus } from './ticket-status.enum';  
 
 export interface TicketSupport {
+  technicienId: any;
   id: number;
   utilisateur: Utilisateur;
   equipment: Equipement;

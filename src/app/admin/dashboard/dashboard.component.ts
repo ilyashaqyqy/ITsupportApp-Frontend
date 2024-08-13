@@ -19,9 +19,9 @@ export class DashboardComponent {
   ];
 
   dashboardCards = [
-    { title: 'Total Equipment', value: '120', link: 'equipment', linkText: 'Manage Equipment' },
+    { title: 'Total Equipment', value: '8', link: 'equipment', linkText: 'Manage Equipment' },
     { title: 'Active Faults', value: '5', link: 'panne', linkText: 'View Faults' },
-    { title: 'Open Tickets', value: '12', link: 'tickets', linkText: 'Manage Tickets' }
+    { title: 'Open Tickets', value: '6', link: 'tickets', linkText: 'Manage Tickets' }
   ];
   constructor(private authService: AuthService, private router: Router) { }
 
