@@ -1,14 +1,15 @@
 <div class="bg-white shadow-xl p-8 mb-10 max-w-4xl mx-auto">
-  
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+      <!-- Ticket Dropdown -->
       <div class="bg-gray-50 rounded-lg p-6 shadow-md">
         <h3 class="text-2xl font-bold text-gray-800 mb-4">Choose Ticket</h3>
         <select id="ticket" [(ngModel)]="selectedTicketId" class="w-full p-3 border-2 border-purple-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent">
           <option [ngValue]="null">Select a ticket</option>
-          <option *ngFor="let ticket of tickets" [ngValue]="ticket.id">{{ ticket.description }}</option>
+          <option *ngFor="let ticket of openTickets" [ngValue]="ticket.id">{{ ticket.description }}</option>
         </select>
       </div>
-      
+  
+      <!-- Technician Dropdown -->
       <div class="bg-gray-50 rounded-lg p-6 shadow-md">
         <h3 class="text-2xl font-bold text-gray-800 mb-4">Select Technician</h3>
         <select id="technician" [(ngModel)]="selectedTechnicienId" class="w-full p-3 border-2 border-purple-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent">
@@ -17,44 +18,51 @@
         </select>
       </div>
     </div>
-    
+  
+    <!-- Assign Ticket Button -->
     <div class="text-center mb-12">
       <button 
         (click)="assignTicket()" 
         [disabled]="!selectedTicketId || !selectedTechnicienId"
-        class="inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-full hover:from-purple-600 hover:to-pink-600 transition duration-300 font-bold text-lg ">
+        class="inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-full hover:from-purple-600 hover:to-pink-600 transition duration-300 font-bold text-lg">
         Assign Ticket
       </button>
     </div>
-    
+  
+    <!-- Ticket Overview -->
     <div class="bg-gray-50 rounded-lg p-6 shadow-md">
       <h3 class="text-2xl font-bold text-gray-800 mb-6">Ticket Overview</h3>
+  
+      <!-- Display first 3 tickets -->
       <ul class="space-y-4">
-        <li *ngFor="let ticket of tickets.slice(0, 3)" class="flex justify-between items-center bg-white p-4 rounded-lg shadow-sm">
-          <span class="font-bold text-purple-600">{{ ticket.description }}</span> 
+        <li *ngFor="let ticket of allTickets.slice(0, 3)" class="flex justify-between items-center bg-white p-4 rounded-lg shadow-sm">
+          <span class="font-bold text-purple-600">{{ ticket.description }}</span>
           <div>
-            <span class="text-gray-600 mr-2">Assigned to:</span> 
+            <span class="text-gray-600 mr-2">Assigned to:</span>
             <span class="text-pink-600 font-bold">{{ ticket.technicienAssigne?.username || 'Unassigned' }}</span>
           </div>
         </li>
       </ul>
-      
-      <div *ngIf="tickets.length > 3" class="mt-6 text-center">
+  
+      <!-- Show All Tickets Button -->
+      <div *ngIf="allTickets.length > 3" class="mt-6 text-center">
         <button 
           (click)="showAllTickets = !showAllTickets"
-          class=" text-pink-600 ">
+          class="text-pink-600">
           {{ showAllTickets ? 'Show Less' : 'Show All Tickets' }}
         </button>
       </div>
   
+      <!-- Display all tickets if showAllTickets is true -->
       <ul *ngIf="showAllTickets" class="space-y-4 mt-4">
-        <li *ngFor="let ticket of tickets.slice(3)" class="flex justify-between items-center bg-white p-4 rounded-lg shadow-sm">
-          <span class="font-bold text-purple-600">{{ ticket.description }}</span> 
+        <li *ngFor="let ticket of allTickets.slice(3)" class="flex justify-between items-center bg-white p-4 rounded-lg shadow-sm">
+          <span class="font-bold text-purple-600">{{ ticket.description }}</span>
           <div>
-            <span class="text-gray-600 mr-2">Assigned to:</span> 
+            <span class="text-gray-600 mr-2">Assigned to:</span>
             <span class="text-pink-600 font-bold">{{ ticket.technicienAssigne?.username || 'Unassigned' }}</span>
           </div>
         </li>
       </ul>
     </div>
   </div>
+  

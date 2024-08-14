@@ -16,6 +16,8 @@ export class TicketManagementComponent implements OnInit {
   selectedTechnicienId: number | null = null;
   showAllTickets: boolean = false;
 
+  allTickets: TicketSupport[] = [];
+  openTickets: TicketSupport[] = [];
 
   constructor(
     private ticketService: TicketService,
@@ -30,8 +32,8 @@ export class TicketManagementComponent implements OnInit {
   loadTickets(): void {
     this.ticketService.getTickets().subscribe(
       (data) => {
-        this.tickets = data;
-  
+        this.allTickets = data; // Store all tickets
+        this.openTickets = data.filter(ticket => ticket.etat === 'OPEN');  // Filter open tickets
       },
       (error) => {
         console.error('Error loading tickets', error);
@@ -39,9 +41,8 @@ export class TicketManagementComponent implements OnInit {
     );
   }
 
-  
   loadTechnicians(): void {
-    this.technicienService. getTechniciens().subscribe(
+    this.technicienService.getTechniciens().subscribe(
       (data) => {
         this.technicians = data;
       },
@@ -66,9 +67,4 @@ export class TicketManagementComponent implements OnInit {
       );
     }
   }
-
-
-
-
-
 }
