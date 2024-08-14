@@ -7,26 +7,26 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         .gradient-bg {
-            background: linear-gradient(90deg, #8B5CF6, #EC4899);
+            background: linear-gradient(90deg, #ffffff, #ffffff);
         }
         .hover-gradient:hover {
-            background: linear-gradient(90deg, #7C3AED, #DB2777);
+            background: linear-gradient(90deg, #ffffff, #ffffff);
         }
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col">
-    <header class="gradient-bg text-white p-4 shadow-md">
+    <header class="gradient-bg text-black p-4 shadow-md">
         <div class="container mx-auto flex justify-between items-center">
             <h1 class="text-2xl font-bold">IT Support</h1>
             <nav>
                 <ul class="flex space-x-4 items-center">
-                    <li><a href="index.html" class="hover:text-gray-200">Home</a></li>
-                    <li><a href="#" class="hover:text-gray-200">Create Ticket</a></li>
-                    <li><a href="#" class="hover:text-gray-200">Contact</a></li>
+                    <li><a href="index.html" class="hover:text-pink-600">Home</a></li>
+                    <li><a href="#" class="hover:text-pink-600">Create Ticket</a></li>
+                    <li><a href="#" class="hover:text-pink-600">Contact</a></li>
                     <li>
-                      <button (click)="logout()" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-full transition-colors duration-200 text-sm font-medium hover-gradient">
+                      <button (click)="logout()" class="bg-white text-pink-600 px-4 py-2 rounded-full transition-colors duration-200 text-sm font-medium shadow-xl hover:bg-pink-600 hover:text-white">
                         Logout
-                    </button>
+                      </button>
                     </li>
                 </ul>
             </nav>
@@ -34,47 +34,54 @@
     </header>
 
     <main class="flex-grow container mx-auto px-4 py-8">
-        <!-- <div class="flex justify-end mb-6">
-            <button (click)="logout()" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full transition-colors duration-200 text-sm font-medium hover-gradient">
-                Logout
-            </button>
-        </div> -->
+        <div class="flex flex-col md:flex-row gap-6">
+            <!-- Left side: Ticket List (larger) -->
+            <div class="md:w-2/3 bg-white rounded-xl shadow-md p-6 mb-6">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Your Tickets</h2>
+                <ul class="divide-y divide-gray-200">
+                    <li *ngFor="let ticket of userTickets" class="py-4">
+                        <p class="font-medium">{{ ticket.description }}</p>
+                        <p class="text-sm text-gray-600">Status: {{ ticket.etat }}</p>
+                        <p class="text-sm text-gray-600">Created: {{ ticket.dateCreation | date:'short' }}</p>
+                    </li>
+                </ul>
+            </div>
 
-        <div class="bg-white rounded-xl shadow-md p-6 mb-6 max-w-md mx-auto">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Create Support Ticket</h2>
+            <!-- Right side: Add Ticket Form (smaller, esoler card size) -->
+            <div class="md:w-1/3 bg-white rounded-xl shadow-md p-4 mb-6 self-start">
+                <h2 class="text-xl font-semibold text-gray-800 mb-3">Create Ticket</h2>
+                <form (ngSubmit)="createTicket()" class="space-y-3">
+                    <div>
+                        <label for="equipment" class="block text-sm font-medium text-gray-700 mb-1">Equipment</label>
+                        <select id="equipment" [(ngModel)]="ticket.equipmentId" name="equipmentId" required class="w-full p-2 text-sm border border-purple-300 rounded-md focus:ring-2 focus:ring-pink-400 focus:border-transparent">
+                            <option *ngFor="let equipment of equipmentList" [value]="equipment.id">
+                                {{ equipment.name }}
+                            </option>
+                        </select>
+                    </div>
 
-            <form (ngSubmit)="createTicket()" class="space-y-4">
-                <div class="mb-4">
-                    <label for="equipment" class="block text-sm font-medium text-gray-700 mb-1">Select Equipment</label>
-                    <select id="equipment" [(ngModel)]="ticket.equipmentId" name="equipmentId" required class="w-full p-2 border border-purple-300 rounded-md focus:ring-2 focus:ring-pink-400 focus:border-transparent">
-                        <option *ngFor="let equipment of equipmentList" [value]="equipment.id">
-                            {{ equipment.name }}
-                        </option>
-                    </select>
-                </div>
+                    <div>
+                        <label for="panne" class="block text-sm font-medium text-gray-700 mb-1">Panne</label>
+                        <select id="panne" [(ngModel)]="ticket.panneId" name="panneId" required class="w-full p-2 text-sm border border-purple-300 rounded-md focus:ring-2 focus:ring-pink-400 focus:border-transparent">
+                            <option *ngFor="let panne of panneList" [value]="panne.id">
+                                {{ panne.description }}
+                            </option>
+                        </select>
+                    </div>
 
-                <div class="mb-4">
-                    <label for="panne" class="block text-sm font-medium text-gray-700 mb-1">Select Panne</label>
-                    <select id="panne" [(ngModel)]="ticket.panneId" name="panneId" required class="w-full p-2 border border-purple-300 rounded-md focus:ring-2 focus:ring-pink-400 focus:border-transparent">
-                        <option *ngFor="let panne of panneList" [value]="panne.id">
-                            {{ panne.description }}
-                        </option>
-                    </select>
-                </div>
-
-                <div class="mb-4">
-                    <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                    <textarea id="description" [(ngModel)]="ticket.description" name="description" required class="w-full p-2 border border-purple-300 rounded-md focus:ring-2 focus:ring-pink-400 focus:border-transparent resize-none" rows="3"></textarea>
-                </div>
-
-                <button type="submit" class="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white p-3 rounded-full hover-gradient transition duration-300 font-semibold text-md">
-                    Submit Ticket
-                </button>
-            </form>
+                    <div>
+                        <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                        <textarea id="description" [(ngModel)]="ticket.description" name="description" required class="w-full p-2 text-sm border border-purple-300 rounded-md focus:ring-2 focus:ring-pink-400 focus:border-transparent resize-none" rows="2"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white p-2 rounded-full font-semibold text-sm hover:from-purple-600 hover:to-pink-600">
+                        Submit Ticket
+                    </button>
+                </form>
+            </div>
         </div>
     </main>
 
-    <footer class="gradient-bg text-white py-4">
+    <footer class="gradient-bg text-black py-4">
         <div class="container mx-auto text-center">
             <p>&copy; 2024 IT Support. All rights reserved.</p>
         </div>
