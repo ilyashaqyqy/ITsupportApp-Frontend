@@ -30,7 +30,7 @@ export class PanneManagementComponent implements OnInit {
   openDialog(panne: Panne | null = null): void {
     const dialogRef = this.dialog.open(PanneDialogComponent, {
       width: '400px',
-      data: { panne: panne || { id: 1, description: '', status: '', reportDate: new Date(), repairDate: new Date() } }
+      data: { panne: panne || { id: 0, equipmentId: 1, description: '', status: '', reportDate: new Date(), repairDate: new Date() } }
     });
 
     dialogRef.afterClosed().subscribe(result => {

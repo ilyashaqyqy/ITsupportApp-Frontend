@@ -15,6 +15,8 @@ export class DashboardComponent {
   faExclamationTriangle = faExclamationTriangle;
   faTicketAlt = faTicketAlt;
   faUsers = faUsers;
+  isMobileMenuOpen = false;
+
 
   currentSection: string = 'dashboard';
   menuItems = [
@@ -37,7 +39,19 @@ export class DashboardComponent {
     this.router.navigate(['/login']);
   }
 
+
+  toggleMobileMenu() {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
+
   loadContent(section: string) {
     this.currentSection = section;
+    if (this.isMobileMenuOpen) {
+      this.toggleMobileMenu();
+    }
   }
+
+  // loadContent(section: string) {
+  //   this.currentSection = section;
+  // }
 }
